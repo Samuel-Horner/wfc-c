@@ -1,0 +1,1 @@
+/usr/bin/cc "CMakeFiles/wfc-c.dir/main.c.o" -o wfc-c 

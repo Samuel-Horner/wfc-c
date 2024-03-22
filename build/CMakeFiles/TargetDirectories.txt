@@ -1,0 +1,3 @@
+/home/sam/dox/projects/wfc-c/build/CMakeFiles/wfc-c.dir
+/home/sam/dox/projects/wfc-c/build/CMakeFiles/edit_cache.dir
+/home/sam/dox/projects/wfc-c/build/CMakeFiles/rebuild_cache.dir
