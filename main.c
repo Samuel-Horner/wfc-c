@@ -5,7 +5,7 @@
 
 #define grid_width 25
 #define grid_height 25
-#define grid_size 625
+#define grid_size grid_width * grid_height
 #define tile_set_size 5
 
 typedef struct tile {
@@ -40,7 +40,7 @@ int random_int(int lower, int upper){
     return (rand() % (upper - lower + 1)) + lower; 
 }
 
-tile print_tile(tile *t){
+void print_tile(tile *t){
     printf("%s ", t->str);
 }
 
@@ -69,7 +69,7 @@ int get_id(cell *grid, pos possition){
     else { return point->id; }
 }
 
-int set_id(cell *grid, pos possition, int id){
+void set_id(cell *grid, pos possition, int id){
     pointer_pos(grid, possition)->id = id;
 }
 
