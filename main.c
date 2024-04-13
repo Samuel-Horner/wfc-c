@@ -3,9 +3,9 @@
 #include <time.h>
 #include "sleep.h"
 
-#define grid_width 25
-#define grid_height 25
-#define grid_size grid_width * grid_height
+int grid_width = 25;
+int grid_height = 25;
+int grid_size = 625;
 #define tile_set_size 5
 
 typedef struct tile {
@@ -192,7 +192,22 @@ void generate(cell *grid, tile *tiles){
     print_grid(grid, tiles);
 }
 
-int main(){
+int main(int argc, char **argv){
+    if (argc > 1){
+        // Handle input parameters
+        if (argc == 2){
+            grid_width = atoi(argv[1]);
+            grid_height = atoi(argv[1]);
+        } else if (argc == 3){
+            grid_width = atoi(argv[1]);
+            grid_height = atoi(argv[2]);
+        } else {
+            printf("Expected only two inputs (width height). Got %d.\n", argc - 1);
+            return 0;
+        }
+        grid_size = grid_width * grid_height;
+    }
+
     srand(time(0));
 
     tile tile_1 = {0, "\x1b[1;34m~\x1b[0m", {1, 1, 1, 0, 0}};
