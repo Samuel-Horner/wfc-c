@@ -6,6 +6,7 @@
 int grid_width = 25;
 int grid_height = 25;
 int grid_size = 625;
+int animate = 1;
 #define tile_set_size 5
 
 typedef struct tile {
@@ -56,7 +57,7 @@ cell *pointer_grid(cell *grid, int x, int y){
     if (!check_bounds(x, y)) { 
         return NULL; 
     }
-    return grid + (y * grid_height) + x;
+    return grid + (y * grid_width) + x;
 }
 
 cell *pointer_pos(cell *grid, pos possition){
@@ -186,23 +187,21 @@ void generate(cell *grid, tile *tiles){
         }
         else { propogate(grid, tiles, min_pos, 1); }
 
-        print_grid(grid, tiles);
+        if (animate) { print_grid(grid, tiles); }
         sleep_ms(7);
     }    
-    print_grid(grid, tiles);
 }
 
 int main(int argc, char **argv){
     if (argc > 1){
         // Handle input parameters
-        if (argc == 2){
+        if (argc >= 2){
             grid_width = atoi(argv[1]);
             grid_height = atoi(argv[1]);
-        } else if (argc == 3){
-            grid_width = atoi(argv[1]);
-            grid_height = atoi(argv[2]);
-        } else {
-            printf("Expected only two inputs (width height). Got %d.\n", argc - 1);
+        } if (argc == 3){
+            animate = atoi(argv[2]);
+        } if (argc >= 4) {
+            printf("Expected only two inputs max (size [int], animate [bool (0/1)]). Got %d.\n", argc - 1);
             return 0;
         }
         grid_size = grid_width * grid_height;
@@ -228,6 +227,7 @@ int main(int argc, char **argv){
 
     create_grid(grid, def);
     generate(grid, tiles);
+    print_grid(grid, tiles);
 
     free(grid);
     free(tiles);
