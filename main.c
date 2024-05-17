@@ -187,8 +187,10 @@ void generate(cell *grid, tile *tiles){
         }
         else { propogate(grid, tiles, min_pos, 1); }
 
-        if (animate) { print_grid(grid, tiles); }
-        sleep_ms(7);
+        if (animate) { 
+            print_grid(grid, tiles);
+            sleep_ms(7);
+        }
     }    
 }
 
